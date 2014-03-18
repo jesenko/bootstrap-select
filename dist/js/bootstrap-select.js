@@ -131,6 +131,7 @@
     selectOnTab: false,
     dropdownAlignRight: false,
     searchAccentInsensitive: false
+    treeSelect: false,
   };
 
   Selectpicker.prototype = {
@@ -665,6 +666,19 @@
             $option.prop('selected', !state);
             that.setSelected(clickedIndex, !state);
             $this.blur();
+
+            // if tree select is enabled, toogle also all children of the current item
+            if (that.options.treeSelect) {
+              var currentLevel = $option.data('level')
+              for (var i = clickedIndex + 1; i < $options.size(); i++) {
+                if ($options.eq(i).data('level') > currentLevel) {
+                  $options.eq(i).prop('selected', !state);
+                  that.setSelected(i, !state);
+                } else {
+                  break;
+                }
+              }
+            }
 
             if ((maxOptions !== false) || (maxOptionsGrp !== false)) {
               var maxReached = maxOptions < $options.filter(':selected').length,
