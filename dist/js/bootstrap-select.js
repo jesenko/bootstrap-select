@@ -1129,6 +1129,7 @@
   $.fn.selectpicker.noConflict = function () {
     $.fn.selectpicker = old;
     return this;
+        selectAllText : ['Select All', 'Deselect All']
   };
 
   $(document)
