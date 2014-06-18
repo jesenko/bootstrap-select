@@ -671,7 +671,7 @@
             if (that.options.treeSelect) {
               var currentLevel = $option.data('level')
               for (var i = clickedIndex + 1; i < $options.size(); i++) {
-                if ($options.eq(i).data('level') > currentLevel) {
+                if ($options.eq(i).data('level') > currentLevel && !$options.eq(i).prop('disabled')) {
                   $options.eq(i).prop('selected', !state);
                   that.setSelected(i, !state);
                 } else {
