@@ -124,8 +124,8 @@
     mobile: false,
     selectOnTab: false,
     dropdownAlignRight: false,
-    searchAccentInsensitive: false
-    treeSelect: false,
+    searchAccentInsensitive: false,
+    treeSelect: false
   };
 
   Selectpicker.prototype = {
