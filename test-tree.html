@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bootstrap-select test page</title>
+
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" type="text/css" href="dist/css/bootstrap-select.css">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      padding-top: 70px;
+    }
+  </style>
+
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <script type="text/javascript" src="dist/js/bootstrap-select.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <form class="form-horizontal" role="form">
+    <div class="form-group">
+      <label for="tree" class="col-lg-2 control-label">"Basic"</label>
+
+      <div class="col-lg-10">
+        <select id="basic" multiple="multiple" class="selectpicker show-tick form-control" data-actions-box="true" data-live-search="true" data-tree-select="true">
+          <option data-level="1">tree-1</option>
+          <option data-level="2">tree-1-1</option>
+          <option data-level="2">tree-1-2</option>
+          <option data-level="1">tree-2</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>

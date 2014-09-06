@@ -661,8 +661,11 @@
             that.setSelected(clickedIndex, !state);
             $this.blur();
 
-            // if tree select is enabled, toogle also all children of the current item
-            if (that.options.treeSelect) {
+            // If tree select is enabled, toogle also all children of the
+            // current item. However, do not toogle items if user is
+            // selecting/deselecting all items (they will already be toogled
+            // nontheless).
+            if (that.options.treeSelect && !that.checkingAll) {
               var currentLevel = $option.data('level')
               for (var i = clickedIndex + 1; i < $options.size(); i++) {
                 if ($options.eq(i).data('level') > currentLevel && !$options.eq(i).prop('disabled')) {
@@ -855,13 +858,17 @@
     },
 
     selectAll: function () {
+      this.checkingAll = true;
       this.findLis();
       this.$lis.not('.divider').not('.disabled').not('.selected').filter(':visible').find('a').click();
+      this.checkingAll = false;
     },
 
     deselectAll: function () {
+      this.checkingAll = true;
       this.findLis();
       this.$lis.not('.divider').not('.disabled').filter('.selected').filter(':visible').find('a').click();
+      this.checkingAll = false;
     },
 
     keydown: function (e) {
