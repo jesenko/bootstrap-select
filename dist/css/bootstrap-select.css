@@ -1,7 +1,7 @@
 /*!
- * Bootstrap-select v1.6.2 (http://silviomoreto.github.io/bootstrap-select/)
+ * Bootstrap-select v1.6.3 (http://silviomoreto.github.io/bootstrap-select)
  *
- * Copyright 2013-2014 bootstrap-select
+ * Copyright 2013-2015 bootstrap-select
  * Licensed under MIT (https://github.com/silviomoreto/bootstrap-select/blob/master/LICENSE)
  */
 
@@ -114,7 +114,6 @@
 .bootstrap-select.btn-group .dropdown-menu li:not(.disabled) a:hover small,
 .bootstrap-select.btn-group .dropdown-menu li:not(.disabled) a:focus small,
 .bootstrap-select.btn-group .dropdown-menu li.active:not(.disabled) a small {
-  color: #64b1d8;
   color: rgba(100, 177, 216, 0.4);
 }
 .bootstrap-select.btn-group .dropdown-menu li.disabled a {
@@ -176,7 +175,7 @@
   margin-right: 34px;
 }
 .bootstrap-select.show-menu-arrow.open > .btn {
-  z-index: 1035 + 1;
+  z-index: 1036;
 }
 .bootstrap-select.show-menu-arrow .dropdown-toggle:before {
   content: '';
@@ -184,7 +183,6 @@
   border-right: 7px solid transparent;
   border-bottom-width: 7px;
   border-bottom-style: solid;
-  border-bottom-color: #cccccc;
   border-bottom-color: rgba(204, 204, 204, 0.2);
   position: absolute;
   bottom: -4px;
@@ -207,7 +205,6 @@
   border-bottom: 0;
   border-top-width: 7px;
   border-top-style: solid;
-  border-top-color: #cccccc;
   border-top-color: rgba(204, 204, 204, 0.2);
 }
 .bootstrap-select.show-menu-arrow.dropup .dropdown-toggle:after {
@@ -229,7 +226,8 @@
   display: block;
 }
 .bs-searchbox,
-.bs-actionsbox {
+.bs-actionsbox,
+.bs-donebutton {
   padding: 4px 8px;
 }
 .bs-actionsbox {
@@ -241,6 +239,16 @@
 }
 .bs-actionsbox .btn-group button {
   width: 50%;
+}
+.bs-donebutton {
+  float: left;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.bs-donebutton .btn-group button {
+  width: 100%;
 }
 .bs-searchbox + .bs-actionsbox {
   padding: 0 8px 4px;

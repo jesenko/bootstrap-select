@@ -1,19 +1,16 @@
 bootstrap-select
 ================
 
-[![Latest release](http://img.shields.io/github/release/silviomoreto/bootstrap-select.svg)](https://github.com/silviomoreto/bootstrap-select/releases/latest)
+[![Latest release](https://img.shields.io/github/release/silviomoreto/bootstrap-select.svg?style=flat)](https://github.com/silviomoreto/bootstrap-select/releases/latest)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE)
 [![Dependency Status](https://david-dm.org/silviomoreto/bootstrap-select.svg)](https://david-dm.org/silviomoreto/bootstrap-select)
-[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
-
 [![devDependency Status](https://david-dm.org/silviomoreto/bootstrap-select/dev-status.svg)](https://david-dm.org/silviomoreto/bootstrap-select#info=devDependencies)
 
 A custom select / multiselect for Bootstrap using button dropdown, designed to behave like regular Bootstrap selects.
 
 ## Demo and Documentation
 
-See a Bootstrap 3.2.0 example [here](http://silviomoreto.github.io/bootstrap-select/3).
-
-See a Bootstrap 2.3.2 example [here](http://silviomoreto.github.io/bootstrap-select) (deprecated).
+See a Bootstrap 3 example [here](http://silviomoreto.github.io/bootstrap-select).
 
 ## Authors
 
@@ -34,16 +31,18 @@ Create your `<select>` with the `.selectpicker` class.
 </select>
 ```
 
-Enable Bootstrap-Select via JavaScript:
+If you use a 1.6.3 or newer, you don't need to to anything else, as the data-api automatically picks up the `<select>`s with the `selectpicker` class.
+
+If you use an older version, you need to add the following either at the bottom of the page (after the last selectpicker), or in a [`$(document).ready()`](http://api.jquery.com/ready/) block.
 ```js
+// To style only <select>s with the selectpicker class
 $('.selectpicker').selectpicker();
 ```
-Or just
+Or
 ```js
+// To style all <select>s
 $('select').selectpicker();
 ```
-
-***Starting with the current dev version, we support bootstrap's data-api, which means that you don't even have to manually instanciate bootstrap-select.***
 
 Checkout the [documentation](http://silviomoreto.github.io/bootstrap-select) for further information.
 
@@ -51,9 +50,9 @@ Checkout the [documentation](http://silviomoreto.github.io/bootstrap-select) for
 
 **N.B.**: The CDN is updated after the release is made public, which means that there is a delay between the publishing of a release and its availability on the CDN. Check [the GitHub page](https://github.com/silviomoreto/bootstrap-select/releases) for the latest release.
 
-* [//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css](//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css)
-* [//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js](//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js)
-* //cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/i18n/defaults-*.min.js (The translation files)
+* [//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css](//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css)
+* [//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js](//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js)
+* //cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/i18n/defaults-*.min.js (The translation files)
 
 ## Bugs and feature requests
 
@@ -65,6 +64,6 @@ review the [guidelines for contributing](CONTRIBUTING.md). Make sure you're usin
 
 ## Copyright and license
 
-Copyright (C) 2013-2014 bootstrap-select
+Copyright (C) 2013-2015 bootstrap-select
 
 Licensed under [the MIT license](LICENSE).

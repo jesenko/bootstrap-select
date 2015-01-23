@@ -1,4 +1,3 @@
-/*jshint node:true*/
 module.exports = function (grunt) {
 
   // From TWBS
@@ -12,11 +11,11 @@ module.exports = function (grunt) {
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
     banner: '/*!\n' +
-        ' * Bootstrap-select v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
-        ' *\n' +
-        ' * Copyright 2013-<%= grunt.template.today("yyyy") %> bootstrap-select\n' +
-        ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
-        ' */\n',
+    ' * Bootstrap-select v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
+    ' *\n' +
+    ' * Copyright 2013-<%= grunt.template.today(\'yyyy\') %> bootstrap-select\n' +
+    ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
+    ' */\n',
 
     // Task configuration.
 
@@ -31,7 +30,7 @@ module.exports = function (grunt) {
       },
       gruntfile: {
         options: {
-          "node": true
+          'node': true
         },
         src: 'Gruntfile.js'
       },
@@ -53,13 +52,9 @@ module.exports = function (grunt) {
         dest: 'dist/js/<%= pkg.name %>.js'
       },
       i18n: {
-        files: [
-          {
-            expand: true,
-            src: '<%= jshint.i18n.src %>',
-            dest: 'dist/'
-          }
-        ]
+        expand: true,
+        src: '<%= jshint.i18n.src %>',
+        dest: 'dist/'
       }
     },
 
@@ -76,21 +71,11 @@ module.exports = function (grunt) {
         }
       },
       i18n: {
-        files: [
-          {
-            expand: true,
-            cwd: 'dist/',
-            src: '<%= jshint.i18n.src %>',
-            dest: 'dist/',
-            ext: '.min.js'
-          }
-        ]
+        expand: true,
+        src: 'dist/<%= jshint.i18n.src %>',
+        ext: '.min.js'
       }
     },
-
-    //qunit: {
-    //    files: ['test/**/*.html']
-    //},
 
     less: {
       options: {
@@ -98,7 +83,7 @@ module.exports = function (grunt) {
         sourceMap: true,
         outputSourceFiles: true,
         sourceMapURL: '<%= pkg.name %>.css.map',
-        sourceMapFilename: 'dist/css/<%= pkg.name %>.css.map'
+        sourceMapFilename: '<%= less.css.dest %>.map'
       },
       css: {
         src: 'less/bootstrap-select.less',
@@ -109,7 +94,6 @@ module.exports = function (grunt) {
     usebanner: {
       css: {
         options: {
-          position: 'top',
           banner: '<%= banner %>'
         },
         src: '<%= less.css.dest %>'
@@ -120,7 +104,7 @@ module.exports = function (grunt) {
       options: {
         compatibility: 'ie8',
         keepSpecialComments: '*',
-        noAdvanced: true
+        advanced: false
       },
       css: {
         src: '<%= less.css.dest %>',
@@ -130,24 +114,24 @@ module.exports = function (grunt) {
 
     csslint: {
       options: {
-        "adjoining-classes": false,
-        "box-sizing": false,
-        "box-model": false,
-        "compatible-vendor-prefixes": false,
-        "floats": false,
-        "font-sizes": false,
-        "gradients": false,
-        "important": false,
-        "known-properties": false,
-        "outline-none": false,
-        "qualified-headings": false,
-        "regex-selectors": false,
-        "shorthand": false,
-        "text-indent": false,
-        "unique-headings": false,
-        "universal-selector": false,
-        "unqualified-attributes": false,
-        "overqualified-elements": false
+        'adjoining-classes': false,
+        'box-sizing': false,
+        'box-model': false,
+        'compatible-vendor-prefixes': false,
+        'floats': false,
+        'font-sizes': false,
+        'gradients': false,
+        'important': false,
+        'known-properties': false,
+        'outline-none': false,
+        'qualified-headings': false,
+        'regex-selectors': false,
+        'shorthand': false,
+        'text-indent': false,
+        'unique-headings': false,
+        'universal-selector': false,
+        'unqualified-attributes': false,
+        'overqualified-elements': false
       },
       css: {
         src: '<%= less.css.dest %>'
@@ -157,12 +141,10 @@ module.exports = function (grunt) {
     sed: {
       versionNumber: {
         path: [
-          "less",
-          "js",
-          "bootstrap-select.jquery.json",
-          "bower.json",
-          "composer.json",
-          "package.json"
+          'js/<%= pkg.name %>.js',
+          'bower.json',
+          'composer.json',
+          'package.json'
         ],
         pattern: (function () {
           var old = grunt.option('old');
@@ -194,6 +176,26 @@ module.exports = function (grunt) {
       }
     },
 
+    compress: {
+      zip: {
+        options: {
+          archive: 'bootstrap-select-<%= pkg.version %>.zip',
+          mode: 'zip'
+        },
+        files: [
+          {
+            expand: true,
+            cwd: 'dist/',
+            src: '**',
+            dest: 'bootstrap-select-<%= pkg.version %>/'
+          }, {
+            src: ['bower.json', 'composer.json', 'package.json'],
+            dest: 'bootstrap-select-<%= pkg.version %>/'
+          }
+        ]
+      }
+    },
+
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -201,17 +203,19 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= jshint.main.src %>', '<%= jshint.i18n.src %>'],
-        tasks: 'dist-js'
+        tasks: 'build-js'
       },
       less: {
         files: 'less/*.less',
-        tasks: 'dist-css'
+        tasks: 'build-css'
       }
     }
   });
 
   // These plugins provide necessary tasks.
-  require('load-grunt-tasks')(grunt);
+  require('load-grunt-tasks')(grunt, {
+    scope: 'devDependencies'
+  });
 
   // Version numbering task.
   // grunt change-version-number --old=A.B.C --new=X.Y.Z
@@ -219,15 +223,18 @@ module.exports = function (grunt) {
   grunt.registerTask('change-version-number', 'sed');
 
   // CSS distribution
-  grunt.registerTask('dist-css', ['clean:css', 'less', 'autoprefixer', 'usebanner', 'cssmin']);
+  grunt.registerTask('build-css', ['clean:css', 'less', 'autoprefixer', 'usebanner', 'cssmin']);
 
   // JS distribution
-  grunt.registerTask('dist-js', ['clean:js', 'concat', 'uglify']);
+  grunt.registerTask('build-js', ['clean:js', 'concat', 'uglify']);
+
+  // Development watch
+  grunt.registerTask('dev-watch', ['build-css', 'build-js', 'watch']);
 
   // Full distribution
-  grunt.registerTask('dist', ['dist-css', 'dist-js']);
+  grunt.registerTask('dist', ['build-css', 'build-js', 'compress']);
 
   // Default task.
-  grunt.registerTask('default', ['clean', 'dist']);
+  grunt.registerTask('default', ['build-css', 'build-js']);
 
 };
