@@ -11,13 +11,13 @@
     define(["jquery"], function (a0) {
       return (factory(a0));
     });
-  } else if (typeof module === 'object' && module.exports) {
+  } else if (typeof exports === 'object') {
     // Node. Does not work with strict CommonJS, but
     // only CommonJS-like environments that support module.exports,
     // like Node.
     module.exports = factory(require("jquery"));
   } else {
-    factory(root["jQuery"]);
+    factory(jQuery);
   }
 }(this, function (jQuery) {
 
